@@ -3,9 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>&#65279;</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
 </head>
-<body>
-    hi
+<body class="sixtyfour-font">
+    <div>
+        <header style="display: flex;justify-content: space-around;">
+            <a href="" retro="0,80">link1#</a>
+            <a href="" retro="0,80">link2#</a>
+            <a href="" retro="0,80">link3#</a>
+            <a href="" retro="0,80">link4#</a>
+        </header>
+        <hr>
+        <main retro>
+            <div>
+                funny how
+            </div>
+            <div>
+                this thing
+            </div>
+            <div>
+                works#
+            </div>
+        </main>
+        <footer>
+
+        </footer>
+    </div>
+    <style>
+        body{
+            background-color: black;
+            text-transform: uppercase;
+            color: limegreen;
+            font-size: 3vh;
+            margin: 0;
+            padding: 1%;
+        }
+        
+        .sixtyfour-font {
+            font-family: "Sixtyfour";
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        hr{
+            border: none;
+            border-top: green 1px solid;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+    </style>
+    <script>
+        document.fonts.ready.then(() =>{
+            function loadEnd(whereTo, loadCharsArray = ['-','\\','|','/'], times = 4){
+
+            }
+            function blinkEnd(whereTo, blinkChar = '█', times = 3, speed = 450){
+                if(blinkChar == '') return
+                if(times != 0)
+                    setTimeout(() => {
+                        whereTo.innerText += blinkChar
+                        setTimeout(() => {
+                            whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
+                                blinkEnd(whereTo, blinkChar, times < 0 ? times : times - 1, speed)
+                        },speed)
+                    },speed)
+            }
+
+            function retroWrite(text, whereTo, doBlink = 1, speed = 40, index = 0, blinkTimes = 3){
+                if(text == '') return
+                blinkChar = whereTo.innerText[whereTo.innerText.length - 1]
+                whereTo.innerText = text.substring(0,index) + blinkChar
+                if(index < text.length){
+                    setTimeout(() => {
+                        retroWrite(text, whereTo, doBlink, speed, index+1)
+                    }, speed)
+                }else{
+                    whereTo.innerText = text.slice(0,-1)
+                    if(doBlink == 1) blinkEnd(whereTo, blinkChar, blinkTimes)
+                }
+            }
+            //retroWrite("hi maj name is james and i dont know what to say so i say this.", document.getElementById('in2'))
+            document.querySelectorAll("[retro]").forEach(element => {
+                element.style.width = element.offsetWidth + "px"
+                console.log(element.style.width)
+                args = element.getAttribute('retro')
+                if(args != ''){
+                    args = args.split(",")
+                    for(let i in args){
+                        if(args[i] == ''){
+                            args[i] = undefined
+                        }else if(i != 0 && typeof args[i] != undefined){
+                            args[i] = parseInt(args[i])
+                        }
+                    }
+                    retroWrite(element.innerText, element, args[0], args[1], args[2], args[3], args[4])
+                }else{
+                    retroWrite(element.innerText, element)
+                }
+            }); 
+        })
+    </script>
 </body>
 </html>
