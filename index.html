@@ -20,12 +20,12 @@
         <hr>-->
         <main>
             <img src="favicon.ico" style="width: 128px; margin: 5px;" alt="">
-            <div retro="2,1000">
+            <div retro="2,500">
                 <div>MEOW</div>
                 <div><3</div>
             </div>
-            <a retro="2, 200" timeout="9000" href="https://c.tenor.com/Kj9eB08G_dcAAAAd/tenor.gif"> 
-                kiss the cat?
+            <a retro="3,150" timeout="4500" href="https://c.tenor.com/Kj9eB08G_dcAAAAd/tenor.gif"> 
+                kiss the cat? 
             </a>
         </main>
         <!--<hr>
@@ -95,6 +95,7 @@
             }
 
             function retroWrite(text, whereTo, doBlink = 1, speed = 40, index = 0, blinkTimes = 3){
+                console.log(doBlink)
                 timeout = whereTo.getAttribute('timeout')
                 timeout = !timeout || timeout == '' ? 0 : parseInt(timeout) 
                 if(timeout != 0){
@@ -105,17 +106,23 @@
                     if(text == '') return
                     blinkChar = text[text.length - 1]
 
-                    if(doBlink != 2)
-                        whereTo.innerText = text.substring(0,index) + blinkChar
-                    else
+                    if(doBlink == 2){
                         whereTo.innerText = text.substring(0,index)
-                    if(index < (doBlink == 2 ? text.length + 1 : text.length)){
+                        leng = text.length
+                    }else{
+                        whereTo.innerText = text.substring(0,index) + blinkChar
+                        leng = text.length - 1
+                    }
+
+                    if(index < leng){
                         setTimeout(() => {
                             retroWrite(text, whereTo, doBlink, speed, index+1, blinkTimes)
                         }, speed)
                     }else{
-                        if(doBlink != 2) whereTo.innerText = text.slice(0,-1)
-                        if(doBlink == 1) blinkEnd(whereTo, blinkChar, blinkTimes)
+                        if(doBlink == 1){
+                            blinkEnd(whereTo, blinkChar, blinkTimes)
+                            whereTo.innerText = text.slice(0,-1)
+                        }
                     }
                 }, timeout)
             }
