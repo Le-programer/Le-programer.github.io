@@ -11,27 +11,24 @@
 </head>
 <body class="sixtyfour-font">
     <div>
-        <header style="display: flex;justify-content: space-around;">
+        <!--<header style="display: flex;justify-content: space-around;">
             <a href="" retro="0,80">link1#</a>
             <a href="" retro="0,80">link2#</a>
             <a href="" retro="0,80">link3#</a>
             <a href="" retro="0,80">link4#</a>
         </header>
-        <hr>
-        <main retro>
-            <div>
-                funny how
-            </div>
-            <div>
-                this thing
-            </div>
-            <div>
-                works#
+        <hr>-->
+        <main style="display: flex; justify-content: center;text-align: center;">
+            <img src="favicon.ico" style="width: 128px; margin: 5px;" alt="">
+            <div retrohop="2,1000" >
+                <div>MEOW</div>
+                <div><3</div>
             </div>
         </main>
+        <!--<hr>
         <footer>
-
-        </footer>
+            
+        </footer>-->
     </div>
     <style>
         body{
@@ -40,7 +37,11 @@
             color: limegreen;
             margin: 0;
             padding: 1%;
-        }
+            visibility: hidden;
+
+            display: flex;
+            justify-content: center;
+        } 
         
         .sixtyfour-font {
             font-family: "Sixtyfour";
@@ -59,9 +60,18 @@
             color: cadetblue;
         }
 
+        main{
+            display: flex;
+            padding-left: 5%;
+            padding-right: 5%;
+            flex-direction: column;
+        }
+
     </style>
     <script>
         document.fonts.ready.then(() =>{
+            document.body.style.visibility = 'visible';
+
             function loadEnd(whereTo, loadCharsArray = ['-','\\','|','/'], times = 4){
 
             }
@@ -77,23 +87,30 @@
                     },speed)
             }
 
-            function retroWrite(text, whereTo, doBlink = 1, speed = 40, index = 0, blinkTimes = 3){
+            function retroWrite(text, whereTo, doBlink = 1, speed = 40, index = 0, blinkTimes = 3, callback = undefined){
                 if(text == '') return
                 blinkChar = whereTo.innerText[whereTo.innerText.length - 1]
-                whereTo.innerText = text.substring(0,index) + blinkChar
-                if(index < text.length){
+
+                if(doBlink != 2)
+                    whereTo.innerText = text.substring(0,index) + blinkChar
+                else
+                    whereTo.innerText = text.substring(0,index)
+                if(index < (doBlink == 2 ? text.length + 1 : text.length)){
                     setTimeout(() => {
-                        retroWrite(text, whereTo, doBlink, speed, index+1)
+                        retroWrite(text, whereTo, doBlink, speed, index+1, blinkTimes)
                     }, speed)
                 }else{
-                    whereTo.innerText = text.slice(0,-1)
+                    if(callback) callback()
+                    console.log(!!callback)
+                    if(doBlink != 2) whereTo.innerText = text.slice(0,-1)
                     if(doBlink == 1) blinkEnd(whereTo, blinkChar, blinkTimes)
                 }
             }
+
             //retroWrite("hi maj name is james and i dont know what to say so i say this.", document.getElementById('in2'))
             document.querySelectorAll("[retro]").forEach(element => {
                 element.style.width = element.offsetWidth + "px"
-                console.log(element.style.width)
+                element.style.height = element.offsetHeight + "px" 
                 args = element.getAttribute('retro')
                 if(args != ''){
                     args = args.split(",")
@@ -104,9 +121,42 @@
                             args[i] = parseInt(args[i])
                         }
                     }
-                    retroWrite(element.innerText, element, args[0], args[1], args[2], args[3], args[4])
+                    retroWrite(element.innerText, element, args[0], args[1], args[2], args[3])
                 }else{
                     retroWrite(element.innerText, element)
+                }
+            }); 
+
+            document.querySelectorAll("[retrohop]").forEach(async (element) => {
+                element.style.width = element.offsetWidth + "px"
+                element.style.height = element.offsetHeight + "px" 
+                args = element.getAttribute('retrohop')
+                console.log(args)
+                if(args != ''){
+                    args = args.split(",")
+                    for(let i in args){
+                        if(args[i] == ''){
+                            args[i] = undefined
+                        }else if(i != 0 && typeof args[i] != undefined){
+                            args[i] = parseInt(args[i]) 
+                        }
+                    }
+                    await new Promise((resolve) => {
+                        retroWrite(
+                            element.innerText, // Text to be processed
+                            element,           // Element to write the text to
+                            args[0],           // Additional arguments for retroWrite
+                            args[1],           // ...
+                            args[2],           // ...
+                            args[3],           // ...
+                            () => {            // Callback function, called when retroWrite is done
+                                resolve();     // Resolving the Promise when the callback is called
+                                console.log("test")
+                            }
+                        );
+                    });
+                }else{
+                    //retroWrite(element.innerText, element)
                 }
             }); 
         })
