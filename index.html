@@ -18,12 +18,15 @@
             <a href="" retro="0,80">link4#</a>
         </header>
         <hr>-->
-        <main style="display: flex; justify-content: center;text-align: center;">
+        <main>
             <img src="favicon.ico" style="width: 128px; margin: 5px;" alt="">
-            <div retrohop="2,1000" >
+            <div retro="2,1000">
                 <div>MEOW</div>
                 <div><3</div>
             </div>
+            <a retro="2, 200" timeout="9000" href="https://c.tenor.com/Kj9eB08G_dcAAAAd/tenor.gif"> 
+                kiss the cat?
+            </a>
         </main>
         <!--<hr>
         <footer>
@@ -65,6 +68,10 @@
             padding-left: 5%;
             padding-right: 5%;
             flex-direction: column;
+
+            text-align: center;
+            align-items: center;
+            justify-content: center;
         }
 
     </style>
@@ -87,24 +94,30 @@
                     },speed)
             }
 
-            function retroWrite(text, whereTo, doBlink = 1, speed = 40, index = 0, blinkTimes = 3, callback = undefined){
-                if(text == '') return
-                blinkChar = whereTo.innerText[whereTo.innerText.length - 1]
-
-                if(doBlink != 2)
-                    whereTo.innerText = text.substring(0,index) + blinkChar
-                else
-                    whereTo.innerText = text.substring(0,index)
-                if(index < (doBlink == 2 ? text.length + 1 : text.length)){
-                    setTimeout(() => {
-                        retroWrite(text, whereTo, doBlink, speed, index+1, blinkTimes)
-                    }, speed)
-                }else{
-                    if(callback) callback()
-                    console.log(!!callback)
-                    if(doBlink != 2) whereTo.innerText = text.slice(0,-1)
-                    if(doBlink == 1) blinkEnd(whereTo, blinkChar, blinkTimes)
+            function retroWrite(text, whereTo, doBlink = 1, speed = 40, index = 0, blinkTimes = 3){
+                timeout = whereTo.getAttribute('timeout')
+                timeout = !timeout || timeout == '' ? 0 : parseInt(timeout) 
+                if(timeout != 0){
+                    whereTo.innerText = ''
+                    whereTo.setAttribute('timeout', '0')
                 }
+                setTimeout(() => {
+                    if(text == '') return
+                    blinkChar = text[text.length - 1]
+
+                    if(doBlink != 2)
+                        whereTo.innerText = text.substring(0,index) + blinkChar
+                    else
+                        whereTo.innerText = text.substring(0,index)
+                    if(index < (doBlink == 2 ? text.length + 1 : text.length)){
+                        setTimeout(() => {
+                            retroWrite(text, whereTo, doBlink, speed, index+1, blinkTimes)
+                        }, speed)
+                    }else{
+                        if(doBlink != 2) whereTo.innerText = text.slice(0,-1)
+                        if(doBlink == 1) blinkEnd(whereTo, blinkChar, blinkTimes)
+                    }
+                }, timeout)
             }
 
             //retroWrite("hi maj name is james and i dont know what to say so i say this.", document.getElementById('in2'))
@@ -124,39 +137,6 @@
                     retroWrite(element.innerText, element, args[0], args[1], args[2], args[3])
                 }else{
                     retroWrite(element.innerText, element)
-                }
-            }); 
-
-            document.querySelectorAll("[retrohop]").forEach(async (element) => {
-                element.style.width = element.offsetWidth + "px"
-                element.style.height = element.offsetHeight + "px" 
-                args = element.getAttribute('retrohop')
-                console.log(args)
-                if(args != ''){
-                    args = args.split(",")
-                    for(let i in args){
-                        if(args[i] == ''){
-                            args[i] = undefined
-                        }else if(i != 0 && typeof args[i] != undefined){
-                            args[i] = parseInt(args[i]) 
-                        }
-                    }
-                    await new Promise((resolve) => {
-                        retroWrite(
-                            element.innerText, // Text to be processed
-                            element,           // Element to write the text to
-                            args[0],           // Additional arguments for retroWrite
-                            args[1],           // ...
-                            args[2],           // ...
-                            args[3],           // ...
-                            () => {            // Callback function, called when retroWrite is done
-                                resolve();     // Resolving the Promise when the callback is called
-                                console.log("test")
-                            }
-                        );
-                    });
-                }else{
-                    //retroWrite(element.innerText, element)
                 }
             }); 
         })
