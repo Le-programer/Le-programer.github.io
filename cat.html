@@ -26,9 +26,13 @@
                 <div>MEOW</div>
                 <div><3</div>
             </div>
-            <a retro="3,150" timeout="3100" onclick="opaa()" style="margin-top: 2%;"> 
+            <div retro="3,75" timeout="3100"style="margin-top: 5%;color:red;"> 
                 kiss the cat?
-            </a> 
+            </div> 
+            <div style="display: flex;margin-top: 5%;">
+                <a retro="3,150" timeout="3600" onclick="opaa()">[yes]</a>
+                <a retro="3,150" timeout="3600" onclick="opaa()" style="margin-left: 4%;">[yes]</a>
+            </div>
         </main>
         <!--<hr>
         <footer>
@@ -91,6 +95,17 @@
         }
         document.fonts.ready.then(() =>{
             document.body.style.visibility = 'visible';
+
+            document.querySelectorAll('a').forEach(ele => {
+                ele.addEventListener('mouseleave', () => {
+                    document.getElementById('cat').src = './favicon.ico'
+                });
+
+                // Mouse leave event to reset the color
+                ele.addEventListener('mouseenter', () => {
+                    document.getElementById('cat').src = './hot.ico'
+                });
+            })
 
             function followEye(whereTo, eyepos = [[[1,1],64], [[1,1],64]]){
                 //console.log(eyepos[0][0][0])
