@@ -19,12 +19,14 @@
         </header>
         <hr>-->
         <main>
-            <a href="https://c.tenor.com/Kj9eB08G_dcAAAAd/tenor.gif"><img src="favicon.ico" style="width: 128px; margin: 5px;" alt=""></a>
-            <div retro="2,150" timeout="500">
+            <img src="eyeball.svg" alt="" class="eye">
+            <img src="eyeball.svg" alt="" class="eye">
+            <img src="favicon.ico" style="width: 128px; margin: 5px;" alt="" id="cat">
+            <div retro="2,250" timeout="500">
                 <div>MEOW</div>
                 <div><3</div>
             </div>
-            <a retro="3,150" timeout="2200" onclick="opaa()"> 
+            <a retro="3,150" timeout="3100" onclick="opaa()" style="margin-top: 2%;"> 
                 kiss the cat?
             </a> 
         </main>
@@ -34,6 +36,11 @@
         </footer>-->
     </div>
     <style>
+        .eye{
+            position: absolute;
+            
+        }
+
         body{
             background-color: black;
             text-transform: uppercase;
@@ -53,11 +60,6 @@
             font-optical-sizing: auto;
             font-weight: 400;
             font-style: normal;
-        }
-
-        hr{
-            border: none;
-            border-top: green 3px solid;
         }
 
         a, a:visited{
@@ -89,6 +91,41 @@
         }
         document.fonts.ready.then(() =>{
             document.body.style.visibility = 'visible';
+
+            function followEye(whereTo, eyepos = [[[1,1],64], [[1,1],64]]){
+                //console.log(eyepos[0][0][0])
+                let posTo = whereTo.getBoundingClientRect()
+                let eyez = document.querySelectorAll(".eye")
+                for(let index = 0; index < 2; index++){
+                    console.log(index)
+                    eyez[index].style.left = `${posTo.left + eyepos[index][0][0]}px`;
+                    eyez[index].style.top = `${posTo.top + eyepos[index][0][1]}px`;
+                    window.addEventListener("resize", () =>{
+                        let posTo = whereTo.getBoundingClientRect()
+                        eyez[index].style.left = `${posTo.left + eyepos[index][0][0]}px`;
+                        eyez[index].style.top = `${posTo.top + eyepos[index][0][1]}px`;
+                    })
+                    eyez[index].style.width = `${eyepos[index][1]}px`;
+                    eyez[index].style.height = `${eyepos[index][1]}px`;
+                    window.addEventListener('mousemove', () => {
+                        const svgRect = eyez[index].getBoundingClientRect();
+
+                        const centerX = svgRect.left + svgRect.width / 2;
+                        const centerY = svgRect.top + svgRect.height / 2;
+
+                        const mouseX = event.clientX;
+                        const mouseY = event.clientY;
+
+                    
+                        const angle = Math.atan2(mouseY - centerY, mouseX - centerX) * (180 / Math.PI);
+
+                        eyez[index].style.transform = `rotate(${angle - 90 % 360}deg)`
+                    });
+                }
+            }
+
+            followEye(document.getElementById('cat'), [[[13,60],32], [[65,45],32]])
+
             document.querySelectorAll('#yrsOld').forEach(ele => {
                 ele.textContent = parseInt((Date.now() - parseInt(ele.textContent) * 1000) / 1000 / 60 / 60 / 24 / 365);
             })

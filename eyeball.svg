@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+	<title>Nowy projekt</title>
+	<style>
+		.s0 { fill: #ffffff;stroke: #000000;stroke-miterlimit:100;stroke-width: 3 } 
+		.s1 { fill: #000000;stroke: #000000;stroke-miterlimit:100;stroke-width: 3 } 
+	</style>
+	<path id="Background" class="s0" d="m32 62c-16.6 0-30-13.4-30-30 0-16.6 13.4-30 30-30 16.6 0 30 13.4 30 30 0 16.6-13.4 30-30 30z"/>
+	<path id="Kształt 2" class="s1" d="m32 61c-6.9 0-12.5-5.6-12.5-12.5 0-6.9 5.6-12.5 12.5-12.5 6.9 0 12.5 5.6 12.5 12.5 0 6.9-5.6 12.5-12.5 12.5z"/>
+</svg>
