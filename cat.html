@@ -10,92 +10,58 @@
     <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
 </head>
 <body class="sixtyfour-font">
-    <div style="width: 98%;">
-        <!--<header>
-            <div style="display: flex;justify-content: space-around;">
-                <a href="" retro="2,80">link1</a>
-                <a href="" retro="2,80" timeout="80*5 + 150">link2</a>
-                <a href="" retro="2,80" timeout="80*5*2 + 150">link3</a> 
-                <a href="" retro="2,80" timeout="80*5*3 + 150">link4</a>
-            </div>
-            <hr>
-        </header>-->
+    <div>
+        <!--<header style="display: flex;justify-content: space-around;">
+            <a href="" retro="0,80">link1#</a>
+            <a href="" retro="0,80">link2#</a>
+            <a href="" retro="0,80">link3#</a>
+            <a href="" retro="0,80">link4#</a>
+        </header>
+        <hr>-->
         <main>
-            <div class="project">
-                <div class="title" retro="1,35,0">[ Project Name ]_</div>
-                <div class="flex">
-                    <img src="favicon.ico" alt="">
-                    <div class="desc">
-                        <div retro="1,35,0" timeout="16*35+200">[ Project Desc ]_</div> 
-                        <hr>
-                        <div retro="1,5,3" timeout="(16*35+200) + (16*35+200)"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates voluptatem ex saepe perferendis consectetur libero aspernatur sit. Alias ab sit soluta vitae, culpa, ipsam inventore perspiciatis deserunt similique eaque repellendus._</div>
-                    </div>
-                </div>
+            <a href="https://c.tenor.com/Kj9eB08G_dcAAAAd/tenor.gif"><img src="favicon.ico" style="width: 128px; margin: 5px;" alt=""></a>
+            <div retro="2,150" timeout="500">
+                <div>MEOW</div>
+                <div><3</div>
             </div>
+            <a retro="3,150" timeout="2200" onclick="opaa()"> 
+                kiss the cat?
+            </a> 
         </main>
-        <hr>
+        <!--<hr>
         <footer>
-           <div retro="1,,,1">find my stuff on_</div> 
-            <div class="media">
-                <a href="" retro="">GitHub</a>  
-            </div>
-            <a href="./cat.html" style="width: 1vw;height: 1vh;"></a>
-        </footer>
+            
+        </footer>-->
     </div>
     <style>
         body{
-            width: 100%;
             background-color: black;
             text-transform: uppercase;
             color: limegreen;
             margin: 0;
-            padding: 0;
-            padding-top: 2%;
-
+            padding: 1%;
             visibility: hidden;
 
             display: flex;
             justify-content: center;
+            background-repeat: no-repeat;
+            background-size: 100vw 100vh;
         } 
         
-        .flex{
-            display: flex;
-        }
-
-        .project {
-            border: 2px solid green;
-            padding: 2%;
-        }
-
-        .project .title{
-            margin-bottom: 2%;
-        }
-
-        .project .desc{
-            margin-left: 2%;
-        }
-
-        .project img{
-            max-width: 25vw;
-            width: 80%;
-            height: 100%;
-        }
-
         .sixtyfour-font {
             font-family: "Sixtyfour";
             font-optical-sizing: auto;
             font-weight: 400;
-            font-style: normal; 
+            font-style: normal;
         }
 
         hr{
             border: none;
-            border-top: green 3px solid; 
-            animation: opening 1s;
-            animation-timing-function: ease;
+            border-top: green 3px solid;
         }
 
         a, a:visited{
+            cursor: pointer;
             text-decoration: none;
             color: #3782d8;
         }
@@ -104,56 +70,25 @@
             color: #4099ff;
         }
 
-        header{
-            position: fixed;
-            background-color: black;
-            width: 100vw;
-            padding-top: 2%;
-        }
-
         main{
             display: flex;
             padding-left: 5%;
             padding-right: 5%;
             flex-direction: column;
 
-            /*text-align: center;
-            align-items: center;
-            justify-content: center;*/
-        }
-
-        footer{
             text-align: center;
             align-items: center;
-            display: flex;
-            flex-direction: column;
-        }
-
-        footer .media{
-            display: flex;
-            width: 80%;
-            flex-direction: column;
             justify-content: center;
-            justify-content: space-around;
-        }
-
-        .horizontal-line{
-            border: none;
-            border-right: green 3px solid; 
-            animation: opening 1s;
-            animation-timing-function: ease;
-        }
-
-        @keyframes opening {
-            from {width: 0%;}
-            to {width: 100%;}
         }
 
     </style>
     <script>
+        function opaa(){
+            document.querySelector('main').remove()
+            document.body.style.backgroundImage = 'url(./catkiss.gif)'
+        }
         document.fonts.ready.then(() =>{
             document.body.style.visibility = 'visible';
-
             document.querySelectorAll('#yrsOld').forEach(ele => {
                 ele.textContent = parseInt((Date.now() - parseInt(ele.textContent) * 1000) / 1000 / 60 / 60 / 24 / 365);
             })
@@ -161,23 +96,21 @@
             function loadEnd(whereTo, loadCharsArray = ['-','\\','|','/'], times = 4){
 
             }
-            
-            function blinkEnd(whereTo, blinkChar = '█', times = 4, speed = 450){
+            function blinkEnd(whereTo, blinkChar = '█', times = 3, speed = 450){
                 if(blinkChar == '') return
                 if(times != 0)
-                    setTimeout(() => { 
-                        whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
+                    setTimeout(() => {
+                        whereTo.innerText += blinkChar
                         setTimeout(() => {
-                                whereTo.innerText += blinkChar
+                            whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
                                 blinkEnd(whereTo, blinkChar, times < 0 ? times : times - 1, speed)
                         },speed)
                     },speed)
-                else
-                    whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
             }
 
-            function retroWrite(text, whereTo, index = 0, doBlink = 2, speed = 65, blinkTimes = 4, blinkSpeed = 450){
-                timeout = eval(whereTo.getAttribute('timeout'))
+            function retroWrite(text, whereTo, doBlink = 1, speed = 40, index = 0, blinkTimes = 3){
+                console.log(doBlink)
+                timeout = whereTo.getAttribute('timeout')
                 timeout = !timeout || timeout == '' ? 0 : parseInt(timeout) 
                 if(timeout != 0){
                     whereTo.innerText = ''
@@ -197,11 +130,12 @@
 
                     if(index < leng){
                         setTimeout(() => {
-                            retroWrite(text, whereTo, index+1, doBlink, speed, blinkTimes, blinkSpeed)
+                            retroWrite(text, whereTo, doBlink, speed, index+1, blinkTimes)
                         }, speed)
                     }else{
                         if(doBlink == 1){
-                            blinkEnd(whereTo, blinkChar, blinkTimes, blinkSpeed)
+                            blinkEnd(whereTo, blinkChar, blinkTimes)
+                            whereTo.innerText = text.slice(0,-1)
                         }
                     }
                 }, timeout)
@@ -221,7 +155,7 @@
                             args[i] = parseInt(args[i])
                         }
                     }
-                    retroWrite(element.innerText, element, undefined, args[0], args[1], args[2], args[3], args[4])
+                    retroWrite(element.innerText, element, args[0], args[1], args[2], args[3])
                 }else{
                     retroWrite(element.innerText, element)
                 }
