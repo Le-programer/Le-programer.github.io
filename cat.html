@@ -19,8 +19,6 @@
         </header>
         <hr>-->
         <main>
-            <img src="eyeball.svg" alt="" class="eye">
-            <img src="eyeball.svg" alt="" class="eye">
             <img src="favicon.ico" style="width: 128px; margin: 5px;" alt="" id="cat">
             <div retro="2,250" timeout="500">
                 <div>MEOW</div>
@@ -40,11 +38,6 @@
         </footer>-->
     </div>
     <style>
-        .eye{
-            position: absolute;
-            
-        }
-
         body{
             background-color: black;
             text-transform: uppercase;
@@ -56,7 +49,7 @@
             display: flex;
             justify-content: center;
             background-repeat: no-repeat;
-            background-size: 100vw 100vh;
+            background-size: 100% 100%;
         } 
         
         .sixtyfour-font {
@@ -93,9 +86,7 @@
             document.querySelector('main').remove()
             document.body.style.backgroundImage = 'url(./catkiss.gif)'
         }
-        document.fonts.ready.then(() =>{
-            document.body.style.visibility = 'visible';
-
+        document.fonts.ready.then(()=>{
             document.querySelectorAll('a').forEach(ele => {
                 ele.addEventListener('mouseleave', () => {
                     document.getElementById('cat').src = './favicon.ico'
@@ -106,113 +97,9 @@
                     document.getElementById('cat').src = './hot.ico'
                 });
             })
-
-            function followEye(whereTo, eyepos = [[[1,1],64], [[1,1],64]]){
-                //console.log(eyepos[0][0][0])
-                let posTo = whereTo.getBoundingClientRect()
-                let eyez = document.querySelectorAll(".eye")
-                for(let index = 0; index < 2; index++){
-                    console.log(index)
-                    eyez[index].style.left = `${posTo.left + eyepos[index][0][0]}px`;
-                    eyez[index].style.top = `${posTo.top + eyepos[index][0][1]}px`;
-                    window.addEventListener("resize", () =>{
-                        let posTo = whereTo.getBoundingClientRect()
-                        eyez[index].style.left = `${posTo.left + eyepos[index][0][0]}px`;
-                        eyez[index].style.top = `${posTo.top + eyepos[index][0][1]}px`;
-                    })
-                    eyez[index].style.width = `${eyepos[index][1]}px`;
-                    eyez[index].style.height = `${eyepos[index][1]}px`;
-                    window.addEventListener('mousemove', () => {
-                        const svgRect = eyez[index].getBoundingClientRect();
-
-                        const centerX = svgRect.left + svgRect.width / 2;
-                        const centerY = svgRect.top + svgRect.height / 2;
-
-                        const mouseX = event.clientX;
-                        const mouseY = event.clientY;
-
-                    
-                        const angle = Math.atan2(mouseY - centerY, mouseX - centerX) * (180 / Math.PI);
-
-                        eyez[index].style.transform = `rotate(${angle - 90 % 360}deg)`
-                    });
-                }
-            }
-
-            followEye(document.getElementById('cat'), [[[13,60],32], [[65,45],32]])
-
-            document.querySelectorAll('#yrsOld').forEach(ele => {
-                ele.textContent = parseInt((Date.now() - parseInt(ele.textContent) * 1000) / 1000 / 60 / 60 / 24 / 365);
-            })
-
-            function loadEnd(whereTo, loadCharsArray = ['-','\\','|','/'], times = 4){
-
-            }
-            function blinkEnd(whereTo, blinkChar = '█', times = 3, speed = 450){
-                if(blinkChar == '') return
-                if(times != 0)
-                    setTimeout(() => {
-                        whereTo.innerText += blinkChar
-                        setTimeout(() => {
-                            whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-                                blinkEnd(whereTo, blinkChar, times < 0 ? times : times - 1, speed)
-                        },speed)
-                    },speed)
-            }
-
-            function retroWrite(text, whereTo, doBlink = 1, speed = 40, index = 0, blinkTimes = 3){
-                console.log(doBlink)
-                timeout = whereTo.getAttribute('timeout')
-                timeout = !timeout || timeout == '' ? 0 : parseInt(timeout) 
-                if(timeout != 0){
-                    whereTo.innerText = ''
-                    whereTo.setAttribute('timeout', '0')
-                }
-                setTimeout(() => {
-                    if(text == '') return
-                    blinkChar = text[text.length - 1]
-
-                    if(doBlink == 2){
-                        whereTo.innerText = text.substring(0,index)
-                        leng = text.length
-                    }else{
-                        whereTo.innerText = text.substring(0,index) + blinkChar
-                        leng = text.length - 1
-                    }
-
-                    if(index < leng){
-                        setTimeout(() => {
-                            retroWrite(text, whereTo, doBlink, speed, index+1, blinkTimes)
-                        }, speed)
-                    }else{
-                        if(doBlink == 1){
-                            blinkEnd(whereTo, blinkChar, blinkTimes)
-                            whereTo.innerText = text.slice(0,-1)
-                        }
-                    }
-                }, timeout)
-            }
-
-            //retroWrite("hi maj name is james and i dont know what to say so i say this.", document.getElementById('in2'))
-            document.querySelectorAll("[retro]").forEach(element => {
-                element.style.width = element.offsetWidth + "px"
-                element.style.height = element.offsetHeight + "px" 
-                args = element.getAttribute('retro')
-                if(args != ''){
-                    args = args.split(",")
-                    for(let i in args){
-                        if(args[i] == ''){
-                            args[i] = undefined
-                        }else if(i != 0 && typeof args[i] != undefined){
-                            args[i] = parseInt(args[i])
-                        }
-                    }
-                    retroWrite(element.innerText, element, args[0], args[1], args[2], args[3])
-                }else{
-                    retroWrite(element.innerText, element)
-                }
-            }); 
         })
     </script>
+    <script src="index.js"></script>
+    <script>let baller = new EyeBaller(document.getElementById("cat"), [new Eye(20, 50, 32, 32, 0, 90),new Eye(61, 36, 32, 32, 0, 90)])</script>
 </body>
 </html>

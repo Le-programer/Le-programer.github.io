@@ -21,17 +21,47 @@
             <hr>
         </header>-->
         <main>
+            <!--
             <div class="project">
-                <div class="title" retro="1,35,0">[ Project Name ]_</div>
+                <div class="title" retro="1,35,0">TebTableBot_</div>
+                <hr class="lr">
                 <div class="flex">
-                    <img src="favicon.ico" alt="">
+                    <div class="slide_show">
+                        <img src="./projectImgs/tebBot/bot-alert.png" alt="">
+                    </div>
+                    
                     <div class="desc">
-                        <div retro="1,35,0" timeout="16*35+200">[ Project Desc ]_</div> 
-                        <hr>
-                        <div retro="1,5,3" timeout="(16*35+200) + (16*35+200)"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates voluptatem ex saepe perferendis consectetur libero aspernatur sit. Alias ab sit soluta vitae, culpa, ipsam inventore perspiciatis deserunt similique eaque repellendus._</div>
+                        <div retro="1,25,0" timeout="16*35+200">Discord bot telling class schedule_</div> 
+                        <hr class="rl">
+                        <div retro="1,2,3" timeout="(16*35+200) + (16*35+200)">
+                             It can generate lesson timetables,
+                             quickly tell you where to find a class or a teacher
+                             and notify you where is your next lesson using school page API_
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+            <div class="project">
+                <div class="title" retro="1,35,0">TebTableBot_</div>
+                <hr class="lr">
+                <div class="flex">
+                    <div class="slide_show">
+                        <img src="./projectImgs/tebBot/bot-alert.png" alt="">
+                    </div>
+                    
+                    <div class="desc">
+                        <div retro="1,25,0" timeout="16*35+200">Discord bot telling class schedule_</div> 
+                        <hr class="rl">
+                        <div retro="1,2,3" timeout="(16*35+200) + (16*35+200)">
+                             It can generate lesson timetables,
+                             quickly tell you where to find a class or a teacher
+                             and notify you where is your next lesson using school page API_
+                        </div>
                     </div>
                 </div>
             </div>
+
         </main>
         <hr>
         <footer>
@@ -42,191 +72,9 @@
             <a href="./cat.html" style="width: 1vw;height: 1vh;"></a>
         </footer>
     </div>
-    <style>
-        body{
-            width: 100%;
-            background-color: black;
-            text-transform: uppercase;
-            color: limegreen;
-            margin: 0;
-            padding: 0;
-            padding-top: 2%;
-
-            visibility: hidden;
-
-            display: flex;
-            justify-content: center;
-        } 
-        
-        .flex{
-            display: flex;
-        }
-
-        .project {
-            border: 2px solid green;
-            padding: 2%;
-        }
-
-        .project .title{
-            margin-bottom: 2%;
-        }
-
-        .project .desc{
-            margin-left: 2%;
-        }
-
-        .project img{
-            max-width: 25vw;
-            width: 80%;
-            height: 100%;
-        }
-
-        .sixtyfour-font {
-            font-family: "Sixtyfour";
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal; 
-        }
-
-        hr{
-            border: none;
-            border-top: green 3px solid; 
-            animation: opening 1s;
-            animation-timing-function: ease;
-        }
-
-        a, a:visited{
-            text-decoration: none;
-            color: #3782d8;
-        }
-
-        a:hover{
-            color: #4099ff;
-        }
-
-        header{
-            position: fixed;
-            background-color: black;
-            width: 100vw;
-            padding-top: 2%;
-        }
-
-        main{
-            display: flex;
-            padding-left: 5%;
-            padding-right: 5%;
-            flex-direction: column;
-
-            /*text-align: center;
-            align-items: center;
-            justify-content: center;*/
-        }
-
-        footer{
-            text-align: center;
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-        }
-
-        footer .media{
-            display: flex;
-            width: 80%;
-            flex-direction: column;
-            justify-content: center;
-            justify-content: space-around;
-        }
-
-        .horizontal-line{
-            border: none;
-            border-right: green 3px solid; 
-            animation: opening 1s;
-            animation-timing-function: ease;
-        }
-
-        @keyframes opening {
-            from {width: 0%;}
-            to {width: 100%;}
-        }
-
-    </style>
+    <script src="index.js"></script>
     <script>
-        document.fonts.ready.then(() =>{
-            document.body.style.visibility = 'visible';
-
-            document.querySelectorAll('#yrsOld').forEach(ele => {
-                ele.textContent = parseInt((Date.now() - parseInt(ele.textContent) * 1000) / 1000 / 60 / 60 / 24 / 365);
-            })
-
-            function loadEnd(whereTo, loadCharsArray = ['-','\\','|','/'], times = 4){
-
-            }
-            
-            function blinkEnd(whereTo, blinkChar = '█', times = 4, speed = 450){
-                if(blinkChar == '') return
-                if(times != 0)
-                    setTimeout(() => { 
-                        whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-                        setTimeout(() => {
-                                whereTo.innerText += blinkChar
-                                blinkEnd(whereTo, blinkChar, times < 0 ? times : times - 1, speed)
-                        },speed)
-                    },speed)
-                else
-                    whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-            }
-
-            function retroWrite(text, whereTo, index = 0, doBlink = 2, speed = 65, blinkTimes = 4, blinkSpeed = 450){
-                timeout = eval(whereTo.getAttribute('timeout'))
-                timeout = !timeout || timeout == '' ? 0 : parseInt(timeout) 
-                if(timeout != 0){
-                    whereTo.innerText = ''
-                    whereTo.setAttribute('timeout', '0')
-                }
-                setTimeout(() => {
-                    if(text == '') return
-                    blinkChar = text[text.length - 1]
-
-                    if(doBlink == 2){
-                        whereTo.innerText = text.substring(0,index)
-                        leng = text.length
-                    }else{
-                        whereTo.innerText = text.substring(0,index) + blinkChar
-                        leng = text.length - 1
-                    }
-
-                    if(index < leng){
-                        setTimeout(() => {
-                            retroWrite(text, whereTo, index+1, doBlink, speed, blinkTimes, blinkSpeed)
-                        }, speed)
-                    }else{
-                        if(doBlink == 1){
-                            blinkEnd(whereTo, blinkChar, blinkTimes, blinkSpeed)
-                        }
-                    }
-                }, timeout)
-            }
-
-            //retroWrite("hi maj name is james and i dont know what to say so i say this.", document.getElementById('in2'))
-            document.querySelectorAll("[retro]").forEach(element => {
-                element.style.width = element.offsetWidth + "px"
-                element.style.height = element.offsetHeight + "px" 
-                args = element.getAttribute('retro')
-                if(args != ''){
-                    args = args.split(",")
-                    for(let i in args){
-                        if(args[i] == ''){
-                            args[i] = undefined
-                        }else if(i != 0 && typeof args[i] != undefined){
-                            args[i] = parseInt(args[i])
-                        }
-                    }
-                    retroWrite(element.innerText, element, undefined, args[0], args[1], args[2], args[3], args[4])
-                }else{
-                    retroWrite(element.innerText, element)
-                }
-            }); 
-        })
+        let baller = new EyeBaller(document.body, [new Eye(5, 5, 60, 60, 0, 90),new Eye(95, 5, 60, 60, 0, 90)])
     </script>
 </body>
 </html>

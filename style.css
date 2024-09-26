@@ -1,4 +1,110 @@
+
 body{
+    background-color: black;
+    text-transform: uppercase;
+    text-transform: none;
+    color: limegreen;
     margin: 0;
-    padd
+    padding: 0;
+    padding-top: 2%;
+
+    visibility: hidden;
+
+    display: flex;
+    justify-content: center;
+} 
+
+.flex{
+    display: flex;
+}
+
+.project {
+    border: 2px solid green;
+    padding: 2%;
+}
+
+.project .title{
+    margin-bottom: 2%;
+}
+
+
+.project .desc{
+    margin-left: 2%;
+}
+
+.sixtyfour-font {
+    font-family: "Sixtyfour";
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal; 
+}
+
+hr{
+    border: none;
+    border-top: green 3px solid; 
+    animation: opening 1s;
+    animation-timing-function: ease;
+}
+
+hr.lr{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+hr.rl{
+    margin-right: 0;
+}
+
+@keyframes opening {
+    from {width: 0%;}
+    to {width: 100%;}
+}
+
+a, a:visited{
+    text-decoration: none;
+    color: #3782d8;
+}
+
+a:hover{
+    color: #4099ff;
+}
+
+header{
+    position: fixed;
+    background-color: black;
+    width: 100vw;
+    padding-top: 2%;
+}
+
+main{
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    flex-direction: column;
+
+    /*text-align: center;
+    align-items: center;
+    justify-content: center;*/
+}
+
+footer{
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+footer .media{
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-around;
+}
+
+.horizontal-line{
+    border: none;
+    border-right: green 3px solid; 
+    animation: opening 1s;
+    animation-timing-function: ease;
 }
