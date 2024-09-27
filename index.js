@@ -179,19 +179,16 @@ class EyeBaller{
     eyeArray = []
 
     constructor(whereTo, eyeArray = [new Eye(), new Eye()]){
+        console.log(whereTo.getBoundingClientRect())
+        this.object = whereTo;
+        this.eyeArray = eyeArray;
 
-            this.object = whereTo;
-            this.eyeArray = eyeArray;
-    
-            this.repositionEyes()
-            window.addEventListener("resize", () => this.repositionEyes())
-
+        this.repositionEyes()
+        window.addEventListener("resize", () => this.repositionEyes())
     }
 
     repositionEyes(){
-        console.log(this.object)
         let posTo = this.object.getBoundingClientRect()
-        console.log(posTo.width, posTo.height)
         
         for(let eye of this.eyeArray){
             eye.object.style.left = `${posTo.left + (posTo.width * (eye.x / 100)) - eye.size / 2}px`;
