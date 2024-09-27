@@ -1,5 +1,4 @@
-
-document.fonts.ready.then(() =>{
+document.addEventListener("DOMContentLoaded", () =>{
     document.body.style.visibility = 'visible';
 
     document.querySelectorAll('#yrsOld').forEach(ele => {
