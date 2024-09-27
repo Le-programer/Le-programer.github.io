@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () =>{
+
+document.fonts.ready.then(() =>{
     document.body.style.visibility = 'visible';
 
     document.querySelectorAll('#yrsOld').forEach(ele => {
@@ -178,11 +179,13 @@ class EyeBaller{
     eyeArray = []
 
     constructor(whereTo, eyeArray = [new Eye(), new Eye()]){
-        this.object = whereTo;
-        this.eyeArray = eyeArray;
-
-        this.repositionEyes()
-        window.addEventListener("resize", () => this.repositionEyes())
+        whereTo.addEventListener('load', () => {
+            this.object = whereTo;
+            this.eyeArray = eyeArray;
+    
+            this.repositionEyes()
+            window.addEventListener("resize", () => this.repositionEyes())
+        })
     }
 
     repositionEyes(){
