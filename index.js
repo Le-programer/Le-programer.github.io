@@ -1,5 +1,5 @@
 
-document.fonts.ready.then(() =>{
+document.addEventListener("DOMContentLoaded", () =>{
     document.body.style.visibility = 'visible';
 
     document.querySelectorAll('#yrsOld').forEach(ele => {
@@ -97,6 +97,9 @@ class Eye{
 
         this.size = height;
 
+        this.width = width;
+        this.height = height;
+
         this.degre = degre;
         this.fixedDegre = fixedDegre;
 
@@ -188,11 +191,9 @@ class EyeBaller{
     }
 
     repositionEyes(){
-        let posTo = this.object.getBoundingClientRect()
-        
         for(let eye of this.eyeArray){
-            eye.object.style.left = `${posTo.left + (posTo.width * (eye.x / 100)) - eye.size / 2}px`;
-            eye.object.style.top = `${posTo.top + (posTo.height * (eye.y / 100)) - eye.size / 2}px`;
+            eye.object.style.left = `${this.object.offsetLeft + (this.object.width * (eye.x / 100)) - eye.width / 2}px`;
+            eye.object.style.top = `${this.object.offsetTop + (this.object.height * (eye.y / 100)) - eye.height / 2}px`;
         }
     }
 }
