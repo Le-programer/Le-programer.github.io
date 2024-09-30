@@ -45,7 +45,7 @@
             <div class="project">
                 <div class="title" retro="1,35,0">TebTableBot_</div>
                 <hr class="lr">
-                <div class="flex">
+                <div class="flex desc_container">
                     <div class="slide_show">
                         <img src="./projectImgs/tebBot/bot-alert.png" alt="">
                     </div>
@@ -69,14 +69,19 @@
             <div class="media">
                 <a href="https://github.com/Le-programer" retro="">GitHub</a>  
             </div>
-            <a href="./cat.html" style="width: 1vw;height: 1vh;"></a>
         </footer>
     </div>
+    <a href="./cat.html" style="position: absolute; top: 97vh; left: 93vw;user-select: none;">
+        <div id="cet">
+            <img src="favicon.ico"  alt="" style="height: 5vh;">
+        </div>
+    </a>
     <script src="index.js"></script>
     <script>
         window.onload = function() {
-            let baller = new EyeBaller(document.body, [new Eye(5, 5, 60, 60, 0, 90),new Eye(95, 5, 60, 60, 0, 90)])
+            new EyeBaller(document.getElementById('cet'), [new Eye('8%', '38%', '1vh', '1vh', 0, 90), new Eye('50%', '22%', '1vh', '1vh', 0, 90)])
         }
     </script>
+
 </body>
 </html>

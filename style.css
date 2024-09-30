@@ -1,5 +1,6 @@
 
 body{
+    overflow: hidden;
     background-color: black;
     text-transform: uppercase;
     text-transform: none;
@@ -28,9 +29,17 @@ body{
     margin-bottom: 2%;
 }
 
-
 .project .desc{
     margin-left: 2%;
+}
+
+.project .slide_show{
+    min-width: 50%;
+
+}
+
+.project .slide_show img{
+    width: 100%;
 }
 
 .sixtyfour-font {
@@ -108,4 +117,14 @@ footer .media{
     border-right: green 3px solid; 
     animation: opening 1s;
     animation-timing-function: ease;
+}
+
+@media only screen and (orientation: portrait) {
+    .project .desc_container{
+        flex-wrap: wrap;
+    }
+
+    .project .desc{
+        margin-top: 2%;
+    }
 }

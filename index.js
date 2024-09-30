@@ -113,10 +113,10 @@ class Eye{
 
         this.object.style.position = 'absolute';
 
-        //this.object.style.width = `${size}px`;
-        this.object.style.height = `${this.size}px`;
+        this.object.style.width = this.width;
+        this.object.style.height = this.height;
 
-        document.body.append(this.object)
+        console.log(this.object)
 
         document.body.addEventListener('mouseout', (event) => {
             this.startAutoRotate(10, 4)
@@ -183,6 +183,11 @@ class EyeBaller{
         console.log(whereTo.getBoundingClientRect())
         this.object = whereTo;
         this.eyeArray = eyeArray;
+        for(let eye of this.eyeArray){
+            whereTo.append(eye.object)
+        }
+
+        this.object.style.position = 'relative'
 
         this.repositionEyes()
         window.addEventListener("resize", () => this.repositionEyes())
@@ -190,8 +195,8 @@ class EyeBaller{
 
     repositionEyes(){
         for(let eye of this.eyeArray){
-            eye.object.style.left = `${this.object.offsetLeft + (this.object.width * (eye.x / 100)) - eye.width / 2}px`;
-            eye.object.style.top = `${this.object.offsetTop + (this.object.height * (eye.y / 100)) - eye.height / 2}px`;
+            eye.object.style.left = eye.x;
+            eye.object.style.top = eye.y;
         }
         
     }
