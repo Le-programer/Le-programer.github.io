@@ -118,20 +118,18 @@ class Eye{
 
         document.body.append(this.object)
 
-        window.addEventListener('mouseout', (event) => {
-            if (!event.relatedTarget || event.relatedTarget.nodeName === "HTML")
+        document.body.addEventListener('mouseout', (event) => {
             this.startAutoRotate(10, 4)
         });
 
         this.startAutoRotate(10, 4)
 
-        window.addEventListener('mouseover', (event) => {
-            if (!event.relatedTarget || event.relatedTarget.nodeName === "HTML")
+        document.body.addEventListener('mouseover', (event) => {
             this.stopAutoRotate()
             this.startFollowMouse()
         });
 
-        window.addEventListener('mousemove', (event) => {
+        document.body.addEventListener('mousemove', (event) => {
             if(!this.followMouse) return;
                 this.rotateToXY(event.clientX, event.clientY)
         })

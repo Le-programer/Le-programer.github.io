@@ -19,7 +19,7 @@
         </header>
         <hr>-->
         <main>
-            <img src="favicon.ico" style="width: 128px; margin: 5px;" alt="" id="cat" onload="new EyeBaller(this, [new Eye(20, 50, 32, 32, 0, 90),new Eye(61, 36, 32, 32, 0, 90)])">
+            <img src="favicon.ico" style="width: 128px; margin: 5px;" alt="" id="cat">
             <div retro="2,250" timeout="500">
                 <div>MEOW</div>
                 <div><3</div>
@@ -36,6 +36,12 @@
         <footer>
             
         </footer>-->
+        <script src="index.js"></script>
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            new EyeBaller(document.getElementById('cat'), [new Eye(20, 50, 32, 32, 0, 90),new Eye(61, 36, 32, 32, 0, 90)])
+        })
+        </script>
     </div>
     <style>
         body{
@@ -106,6 +112,5 @@
             })
         })
     </script>
-    <script src="index.js"></script>
 </body>
 </html>
