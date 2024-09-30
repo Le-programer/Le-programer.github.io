@@ -38,9 +38,9 @@
         </footer>-->
         <script src="index.js"></script>
         <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            new EyeBaller(document.getElementById('cat'), [new Eye(20, 50, 32, 32, 0, 90),new Eye(61, 36, 32, 32, 0, 90)])
-        })
+            window.onload = function() {
+                let abller = new EyeBaller(document.getElementById('cat'), [new Eye(20, 50, 32, 32, 0, 90),new Eye(61, 36, 32, 32, 0, 90)])
+            }
         </script>
     </div>
     <style>
