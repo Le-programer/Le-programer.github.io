@@ -20,7 +20,7 @@
         <hr>-->
         <main>
             <div id="cat" style="margin: 5px;">
-                <img src="favicon.ico" style="width: 128px;" alt="">
+                <img src="favicon.ico" id="catImg" style="width: 128px;" alt="">
             </div>     
             <div retro="2,250" timeout="500">
                 <div>MEOW</div>
@@ -42,6 +42,31 @@
         <script>
             window.onload = function() {
                 let abller = new EyeBaller(document.getElementById('cat'), [new Eye(12+'px', 62+'px', 32+'px', 32+'px', 0, 90),new Eye(62+'px', 40+'px', 32+'px', 32+'px', 0, 90)])
+            
+                function opaa(){
+                    document.body.innerHTML = ''
+
+                    document.body.style.backgroundImage = 'url(./catkiss.gif)'
+                    document.body.style.backgroundRepeat = 'no-repeat'
+                    document.body.style.backgroundSize = '100% 100%'
+
+                    document.body.style.width = '100vw'
+                    document.body.style.height = '100vh'
+                }
+                
+                document.fonts.ready.then(()=>{
+                    console.log("a")
+                    document.querySelectorAll('a').forEach(ele => {
+                        ele.addEventListener('mouseleave', () => {
+                            document.getElementById('catImg').src = './favicon.ico'
+                        });
+
+                        // Mouse leave event to reset the color
+                        ele.addEventListener('mouseenter', () => {
+                            document.getElementById('catImg').src = './hot.ico'
+                        });
+                    })
+                })
             }
         </script>
     </div>
@@ -91,29 +116,5 @@
         }
 
     </style>
-    <script>
-        function opaa(){
-            document.body.innerHTML = ''
-
-            document.body.style.backgroundImage = 'url(./catkiss.gif)'
-            document.body.style.backgroundRepeat = 'no-repeat'
-            document.body.style.backgroundSize = '100% 100%'
-
-            document.body.style.width = '100vw'
-            document.body.style.height = '100vh'
-        }
-        document.fonts.ready.then(()=>{
-            document.querySelectorAll('a').forEach(ele => {
-                ele.addEventListener('mouseleave', () => {
-                    document.getElementById('cat').src = './favicon.ico'
-                });
-
-                // Mouse leave event to reset the color
-                ele.addEventListener('mouseenter', () => {
-                    document.getElementById('cat').src = './hot.ico'
-                });
-            })
-        })
-    </script>
 </body>
 </html>
