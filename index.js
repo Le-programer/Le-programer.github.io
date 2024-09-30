@@ -116,8 +116,6 @@ class Eye{
         this.object.style.width = this.width;
         this.object.style.height = this.height;
 
-        console.log(this.object)
-
         document.body.addEventListener('mouseout', (event) => {
             this.startAutoRotate(10, 4)
         });
@@ -180,17 +178,22 @@ class EyeBaller{
     eyeArray = []
 
     constructor(whereTo, eyeArray = [new Eye(), new Eye()]){
-        console.log(whereTo.getBoundingClientRect())
+        if(whereTo.localName == "img"){
+            console.error("class EyeBaller: whereTo object cannot be img, cannot append other objects to it, best just do div and put img to the div and set whereTo to the made div.")
+            return null
+        }
         this.object = whereTo;
         this.eyeArray = eyeArray;
         for(let eye of this.eyeArray){
             whereTo.append(eye.object)
+            eye.object.style.left = eye.x;
+            eye.object.style.top = eye.y;
         }
 
         this.object.style.position = 'relative'
 
-        this.repositionEyes()
-        window.addEventListener("resize", () => this.repositionEyes())
+        //this.repositionEyes()
+        //window.addEventListener("resize", () => this.repositionEyes())
     }
 
     repositionEyes(){
