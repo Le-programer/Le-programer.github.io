@@ -30,8 +30,8 @@
                 kiss the cat?
             </div> 
             <div style="display: flex;margin-top: 5%;">
-                <a retro="3,150" timeout="3600" onclick="opaa()">[yes]</a>
-                <a retro="3,150" timeout="3600" onclick="opaa()" style="margin-left: 4%;">[yes]</a>
+                <a retro="3,150" timeout="3600" onclick="opaa()" ontouchstart="opaa()">[yes]</a>
+                <a retro="3,150" timeout="3600" onclick="opaa()" ontouchstart="opaa()" style="margin-left: 4%;">[yes]</a>
             </div>
         </main>
         <!--<hr>
@@ -40,10 +40,7 @@
         </footer>-->
         <script src="index.js"></script>
         <script>
-            window.onload = function() {
-                let abller = new EyeBaller(document.getElementById('cat'), [new Eye(12+'px', 62+'px', 32+'px', 32+'px', 0, 90),new Eye(62+'px', 40+'px', 32+'px', 32+'px', 0, 90)])
-            
-                function opaa(){
+            function opaa(){
                     document.body.innerHTML = ''
 
                     document.body.style.backgroundImage = 'url(./catkiss.gif)'
@@ -52,10 +49,11 @@
 
                     document.body.style.width = '100vw'
                     document.body.style.height = '100vh'
-                }
+            }
+            window.onload = function() {
+                let abller = new EyeBaller(document.getElementById('cat'), [new Eye(12+'px', 62+'px', 32+'px', 32+'px', 0, 90),new Eye(62+'px', 40+'px', 32+'px', 32+'px', 0, 90)])
                 
                 document.fonts.ready.then(()=>{
-                    console.log("a")
                     document.querySelectorAll('a').forEach(ele => {
                         ele.addEventListener('mouseleave', () => {
                             document.getElementById('catImg').src = './favicon.ico'

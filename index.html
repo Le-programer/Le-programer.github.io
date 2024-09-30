@@ -71,11 +71,21 @@
             </div>
         </footer> 
     </div>
-    <a href="./cat.html" style="position: absolute; top: 96vh; left: 93vw;user-select: none;">
+    <a href="./cat.html" id="catLink" style="position: absolute; user-select: none;">
         <div id="cet">
-            <img src="favicon.ico"  alt="" style="height: 5vh;">
+            <img src="favicon.ico"  alt="" id="cat">
         </div>
     </a>
+    <style>
+        #catLink{
+            bottom:-1vh;
+            right: 0;
+        }
+
+        #cat{
+            height: 5vh;
+        }
+    </style>
     <script src="index.js"></script>
     <script>
         window.onload = function() {
