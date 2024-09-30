@@ -74,7 +74,9 @@
     </div>
     <script src="index.js"></script>
     <script>
-        let baller = new EyeBaller(document.body, [new Eye(5, 5, 60, 60, 0, 90),new Eye(95, 5, 60, 60, 0, 90)])
+        window.onload = function() {
+            let baller = new EyeBaller(document.body, [new Eye(5, 5, 60, 60, 0, 90),new Eye(95, 5, 60, 60, 0, 90)])
+        }
     </script>
 </body>
 </html>
