@@ -1,3 +1,12 @@
+@media only screen and (orientation: portrait) {
+    .project .desc_container{
+        flex-wrap: wrap;
+    }
+
+    .project .desc{
+        margin-top: 2%;
+    }
+}
 
 body{
     overflow: hidden;
@@ -119,12 +128,3 @@ footer .media{
     animation-timing-function: ease;
 }
 
-@media only screen and (orientation: portrait) {
-    .project .desc_container{
-        flex-wrap: wrap;
-    }
-
-    .project .desc{
-        margin-top: 2%;
-    }
-}
