@@ -139,7 +139,7 @@ class Eye{
 
     setRotation(deg){
         this.degre = deg;   
-        this.object.style.transform = `${this.flipImg ? 'scale(-1)' : ''} rotate(${this.degre - this.fixedDegre % 360}deg)`;
+        this.object.style.transform = `${this.flipImg ? 'scale(-1)' : ''} rotate(${this.degre - this.fixedDegre}deg)`;
     }
 
     rotateToXY(x, y){
@@ -195,5 +195,6 @@ class EyeBaller{
             eye.object.style.left = `${this.object.offsetLeft + (this.object.width * (eye.x / 100)) - eye.width / 2}px`;
             eye.object.style.top = `${this.object.offsetTop + (this.object.height * (eye.y / 100)) - eye.height / 2}px`;
         }
+        
     }
 }

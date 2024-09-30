@@ -19,7 +19,7 @@
         </header>
         <hr>-->
         <main>
-            <img src="favicon.ico" style="width: 128px; margin: 5px;" alt="" id="cat">
+            <img src="favicon.ico" style="width: 128px; margin: 5px;" alt="" id="cat" onload="new EyeBaller(this, [new Eye(20, 50, 32, 32, 0, 90),new Eye(61, 36, 32, 32, 0, 90)])">
             <div retro="2,250" timeout="500">
                 <div>MEOW</div>
                 <div><3</div>
@@ -48,8 +48,9 @@
 
             display: flex;
             justify-content: center;
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
+                
+            width: 100vw;
+            height: 100vh;
         } 
         
         .sixtyfour-font {
@@ -83,8 +84,14 @@
     </style>
     <script>
         function opaa(){
-            document.querySelector('main').remove()
+            document.body.innerHTML = ''
+
             document.body.style.backgroundImage = 'url(./catkiss.gif)'
+            document.body.style.backgroundRepeat = 'no-repeat'
+            document.body.style.backgroundSize = '100% 100%'
+
+            document.body.style.width = '100vw'
+            document.body.style.height = '100vh'
         }
         document.fonts.ready.then(()=>{
             document.querySelectorAll('a').forEach(ele => {
@@ -100,6 +107,5 @@
         })
     </script>
     <script src="index.js"></script>
-    <script>let baller = new EyeBaller(document.getElementById("cat"), [new Eye(20, 50, 32, 32, 0, 90),new Eye(61, 36, 32, 32, 0, 90)])</script>
 </body>
 </html>
