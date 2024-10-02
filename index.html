@@ -110,12 +110,14 @@
             new EyeBaller(document.getElementById('cet'), [new Eye('8%', '38%', '1vh', '1vh', 0, 90), new Eye('50%', '22%', '1vh', '1vh', 0, 90)])
             
             let goober = document.getElementById('catLink')
-
+            let gooberHidden = false
             function handleHover() {
+                if(gooberHidden) return
                 goober.classList.add('hide'); 
-
+                gooberHidden = true
                 setTimeout(() => {
                     goober.classList.remove('hide');
+                    gooberHidden = false
                 }, 8100); 
             }
 
