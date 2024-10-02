@@ -72,6 +72,10 @@ footer .media{
 /* all */
 
     *{
+        cursor: url('./pointer1.png'), auto;
+    }
+
+    *:active{
         cursor: url('./pointing.png'), auto;
     }
 
