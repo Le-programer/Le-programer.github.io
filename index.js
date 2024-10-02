@@ -1,3 +1,5 @@
+var isPhone = /Mobi|Android/i.test(navigator.userAgent);
+
 function blinkEnd(whereTo, blinkChar = '█', times = 4, speed = 450){
     if(blinkChar == '') return
     if(times != 0)
@@ -93,22 +95,23 @@ class Eye{
 
         this.object.style.width = this.width;
         this.object.style.height = this.height;
-
-        document.body.addEventListener('mouseout', (event) => {
-            this.startAutoRotate(10, 4)
-        });
-
+        
         this.startAutoRotate(10, 4)
-
-        document.body.addEventListener('mouseover', (event) => {
-            this.stopAutoRotate()
-            this.startFollowMouse()
-        });
-
-        document.body.addEventListener('mousemove', (event) => {
-            if(!this.followMouse) return;
-                this.rotateToXY(event.clientX, event.clientY)
-        })
+        if(!isPhone){
+            document.body.addEventListener('mouseout', (event) => {
+                this.startAutoRotate(10, 4)
+            });
+    
+            document.body.addEventListener('mouseover', (event) => {
+                this.stopAutoRotate()
+                this.startFollowMouse()
+            });
+    
+            document.body.addEventListener('mousemove', (event) => {
+                if(!this.followMouse) return;
+                    this.rotateToXY(event.clientX, event.clientY)
+            })
+        }
     }
 
     setRotation(deg){
