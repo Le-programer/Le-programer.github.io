@@ -9,17 +9,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
 </head>
-<body class="sixtyfour-font">
+<body class="sixtyfour-font"> 
+    <div class="background">
+        <div style="/*-webkit-mask-image: -webkit-gradient(linear, 0% 5%, 0% 60%, from(rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.1)));*/">
+
+        </div>
+    </div>
     <div style="width: 98%;">
-        <!--<header>
-            <div style="display: flex;justify-content: space-around;">
+       <header>
+             <!--<div style="display: flex;justify-content: space-around;">
                 <a href="" retro="2,80">link1</a>
                 <a href="" retro="2,80" timeout="80*5 + 150">link2</a>
                 <a href="" retro="2,80" timeout="80*5*2 + 150">link3</a> 
                 <a href="" retro="2,80" timeout="80*5*3 + 150">link4</a>
             </div>
-            <hr>
-        </header>-->
+            <hr>-->
+            <img src="https://avatars.githubusercontent.com/u/100922591?v=4" alt=""class="avatar">
+        </header>
         <main>
             <!--
             <div class="project">
@@ -71,7 +77,7 @@
             </div>
         </footer> 
     </div>
-    <a href="./cat.html" id="catLink" style="position: absolute; user-select: none;">
+    <a href="./cat.html" id="catLink" style="position: fixed; user-select: none;">
         <div id="cet">
             <img src="favicon.ico"  alt="" id="cat">
         </div>
@@ -81,15 +87,71 @@
             bottom:-1vh;
             right: 0;
         }
+        .hide{
+            animation: hide 8s;
+            animation-timing-function: ease;
+        }
+        
+        @keyframes hide {
+            0% {bottom:-1vh;}
+            15% {bottom:-6vh;}
+            80% {bottom:-6vh;}
+            100% {bottom:-1vh;}
+        }
 
         #cat{
             height: 5vh;
+            cursor: pointer;
         }
     </style>
     <script src="index.js"></script>
     <script>
         window.onload = function() {
             new EyeBaller(document.getElementById('cet'), [new Eye('8%', '38%', '1vh', '1vh', 0, 90), new Eye('50%', '22%', '1vh', '1vh', 0, 90)])
+            
+            let goober = document.getElementById('catLink')
+
+            function handleHover() {
+                goober.classList.add('hide'); 
+
+                setTimeout(() => {
+                    goober.classList.remove('hide');
+                }, 8100); 
+            }
+
+            goober.addEventListener('mouseover', handleHover);
+
+            function matrix(){
+                const background = document.querySelector('.background')
+                const cols = Math.floor(background.offsetWidth / 16); // Calculate the number of columns
+                const rows = Math.floor(background.offsetHeight/ 16) + 1; // Calculate the number of rows
+                const colsPerFive = parseInt(cols / 9);
+                let matrixString = '';
+
+                console.log(background.innerWidth)
+                for (let r = 0; r < rows; r++) {
+                    let rowString = '';
+
+                    for (let c = 0; c < colsPerFive; c++) {
+                        for(let b = 0; b < 8; b++){
+                            rowString += Math.random() > 0.5 ? '1' : '0';
+                        }
+                        rowString += ' '
+                    }
+
+                    // Ensure that the rowString does not exceed the column limit
+                    rowString = rowString.slice(0, cols); // Trim to match the column width
+
+                    matrixString += rowString + '\n'; // Add newline after each row
+                }
+                    
+                    background.textContent = matrixString;
+                    background.textContent += "00100011 00100000 01101000 01100101 01101100 01101100 01101111 00100000 01101001 01100110 00100000 01111001 01101111 01110101 00100000 01110010 01100101 01100001 01100100 00100000 01110100 01101000 01101001 01110011"
+                    
+            }
+            matrix()
+            window.addEventListener("resize", () => matrix())
+            
         }
     </script>
 

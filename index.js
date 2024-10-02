@@ -1,85 +1,63 @@
-
-document.fonts.ready.then( () => {
-    document.body.style.visibility = 'visible';
-
-    document.querySelectorAll('#yrsOld').forEach(ele => {
-        ele.textContent = parseInt((Date.now() - parseInt(ele.textContent) * 1000) / 1000 / 60 / 60 / 24 / 365);
-    })
-    
-    function blinkEnd(whereTo, blinkChar = '█', times = 4, speed = 450){
-        if(blinkChar == '') return
-        if(times != 0)
-            setTimeout(() => { 
-                whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-                whereTo.innerText += '\u00A0'
-                setTimeout(() => {
-                        whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-                        whereTo.innerText += blinkChar
-                        blinkEnd(whereTo, blinkChar, times < 0 ? times : times - 1, speed)
-                },speed)
-            },speed)
-        else{
+function blinkEnd(whereTo, blinkChar = '█', times = 4, speed = 450){
+    if(blinkChar == '') return
+    if(times != 0)
+        setTimeout(() => { 
             whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
             whereTo.innerText += '\u00A0'
-            whereTo.style.height = "auto"
-            whereTo.style.width = "auto"
-        }
+            setTimeout(() => {
+                    whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
+                    whereTo.innerText += blinkChar
+                    blinkEnd(whereTo, blinkChar, times < 0 ? times : times - 1, speed)
+            },speed)
+        },speed)
+    else{
+        whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
+        whereTo.innerText += '\u00A0'
+        whereTo.style.height = "auto"
+        whereTo.style.width = "auto"
     }
+}
 
-    function retroWrite(text, whereTo, index = 0, doBlink = 2, speed = 65, blinkTimes = 4, blinkSpeed = 450){
-        timeout = eval(whereTo.getAttribute('timeout'))
-        timeout = !timeout || timeout == '' ? 0 : parseInt(timeout) 
-        if(timeout != 0){
-            whereTo.innerText = ''
-            whereTo.setAttribute('timeout', '0')
-        }
-        setTimeout(() => {
-            if(text == '') return
-            blinkChar = text[text.length - 1]
-
-            if(doBlink == 2){
-                whereTo.innerText = text.substring(0,index)
-                leng = text.length
-            }else{
-                whereTo.innerText = text.substring(0,index) + blinkChar
-                leng = text.length - 1
-            }
-
-            if(index < leng){
-                setTimeout(() => {
-                    retroWrite(text, whereTo, index+1, doBlink, speed, blinkTimes, blinkSpeed)
-                }, speed)
-            }else{
-                if(doBlink == 1){
-                    blinkEnd(whereTo, blinkChar, blinkTimes, blinkSpeed)
-                }else{
-                    whereTo.style.height = "auto"
-                    whereTo.style.width = "auto"
-                }
-            }
-        }, timeout)
+function retroWrite(text, whereTo, index = 0, doBlink = 2, speed = 65, blinkTimes = 4, blinkSpeed = 450){
+    timeout = eval(whereTo.getAttribute('timeout'))
+    timeout = !timeout || timeout == '' ? 0 : parseInt(timeout) 
+    if(timeout != 0){
+        whereTo.innerText = ''
+        whereTo.setAttribute('timeout', '0')
     }
+    setTimeout(() => {
+        if(text == '') return
+        blinkChar = text[text.length - 1]
 
-    //retroWrite("hi maj name is james and i dont know what to say so i say this.", document.getElementById('in2'))
-    document.querySelectorAll("[retro]").forEach(element => {
-        element.style.width = element.offsetWidth + "px"
-        element.style.height = element.offsetHeight + "px" 
-        args = element.getAttribute('retro')
-        if(args != ''){
-            args = args.split(",")
-            for(let i in args){
-                if(args[i] == ''){
-                    args[i] = undefined
-                }else if(i != 0 && typeof args[i] != undefined){
-                    args[i] = parseInt(args[i])
-                }
-            }
-            retroWrite(element.innerText, element, undefined, args[0], args[1], args[2], args[3], args[4])
+        if(doBlink == 2){
+            whereTo.innerText = text.substring(0,index)
+            leng = text.length
         }else{
-            retroWrite(element.innerText, element)
+            whereTo.innerText = text.substring(0,index) + blinkChar
+            leng = text.length - 1
         }
-    }); 
-})
+
+        if(index < leng){
+            setTimeout(() => {
+                retroWrite(text, whereTo, index+1, doBlink, speed, blinkTimes, blinkSpeed)
+            }, speed)
+        }else{
+            if(doBlink == 1){
+                blinkEnd(whereTo, blinkChar, blinkTimes, blinkSpeed)
+            }else{
+                whereTo.style.height = "auto"
+                whereTo.style.width = "auto"
+            }
+        }
+    }, timeout)
+}
+/*
+function retroWrite(text, whereTo, index = 0, doBlink = 2, speed = 65, blinkTimes = 4, blinkSpeed = 450){
+    text = text.slice
+    setInterval(() => {
+
+    }, speed)
+}*/
 
 
 class Eye{
@@ -204,3 +182,31 @@ class EyeBaller{
         
     }
 }
+
+document.fonts.ready.then( () => {
+    document.body.style.visibility = 'visible';
+
+    document.querySelectorAll('#yrsOld').forEach(ele => {
+        ele.textContent = parseInt((Date.now() - parseInt(ele.textContent) * 1000) / 1000 / 60 / 60 / 24 / 365);
+    })
+
+    //retroWrite("hi maj name is james and i dont know what to say so i say this.", document.getElementById('in2'))
+    document.querySelectorAll("[retro]").forEach(element => {
+        element.style.width = element.offsetWidth + "px"
+        element.style.height = element.offsetHeight + "px" 
+        args = element.getAttribute('retro')
+        if(args != ''){
+            args = args.split(",")
+            for(let i in args){
+                if(args[i] == ''){
+                    args[i] = undefined
+                }else if(i != 0 && typeof args[i] != undefined){
+                    args[i] = parseInt(args[i])
+                }
+            }
+            retroWrite(element.innerText, element, undefined, args[0], args[1], args[2], args[3], args[4])
+        }else{
+            retroWrite(element.innerText, element)
+        }
+    }); 
+})
