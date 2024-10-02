@@ -72,11 +72,11 @@ footer .media{
 /* all */
 
     *{
-        cursor: url('./pointer1.png'), auto;
+        cursor: url('./cats/cat_look.png'), auto;
     }
 
     *:active{
-        cursor: url('./pointing.png'), auto;
+        cursor: url('./cats/cat_point.png'), auto;
     }
 
     /* body */
@@ -132,6 +132,7 @@ footer .media{
 
     a:hover{
         color: #4099ff;
+        cursor: url('./cats/cat_pojebany.png'), auto;
     }
 
     /* fonts */
