@@ -164,11 +164,13 @@ class EyeBaller{
             return null
         }
         this.object = whereTo;
+        this.object.EyeBaller = this;
         this.eyeArray = eyeArray;
         for(let eye of this.eyeArray){
             whereTo.append(eye.object)
-            eye.object.style.left = eye.x;
-            eye.object.style.top = eye.y;
+            eye.object.style.left = `calc(${eye.x} - ${eye.width} / 2)`;
+            eye.object.style.top = `calc(${eye.y} - ${eye.height} / 2)`;
+            console
         }
 
         this.object.style.position = 'relative'

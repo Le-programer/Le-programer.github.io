@@ -23,8 +23,8 @@
                 kiss the cat?
             </div> 
             <div style="display: flex;margin-top: 5%;">
-                <a retro="3,150" timeout="3600" onclick="opaa()" ontouchstart="opaa()">[yes]</a>
-                <a retro="3,150" timeout="3600" onclick="opaa()" ontouchstart="opaa()" style="margin-left: 4%;">[yes]</a>
+                <a retro="3,150" timeout="3600" onclick="opaa();audio.play()" ontouchstart="opaa()">[yes]</a>
+                <a retro="3,150" timeout="3600" onclick="opaa();audio.play()" ontouchstart="opaa()" style="margin-left: 4%;">[yes]</a>
             </div>
         </main>
         <script src="index.js"></script>
@@ -39,9 +39,10 @@
                     document.body.style.width = '100vw'
                     document.body.style.height = '100vh'
             }
+            var audio = new Audio("./cats/hot_meow.mp3");
             window.onload = function() {
-                let abller = new EyeBaller(document.getElementById('cat'), [new Eye(12+'px', 62+'px', 32+'px', 32+'px', 0, 90),new Eye(62+'px', 40+'px', 32+'px', 32+'px', 0, 90)])
-                
+                //let abller = new EyeBaller(document.getElementById('cat'), [new Eye(12+'px', 62+'px', 32+'px', 32+'px', 0, 90),new Eye(62+'px', 40+'px', 32+'px', 32+'px', 0, 90)])
+                let abller = new EyeBaller(document.getElementById('cat'), [new Eye('23%', '48%', 32+'px', 32+'px', 0, 90),new Eye('60%', '35%', 32+'px', 32+'px', 0, 90)])
                 document.fonts.ready.then(()=>{
                     document.querySelectorAll('a').forEach(ele => {
                         ele.addEventListener('mouseleave', () => {

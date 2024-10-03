@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
 </head>
 <body class="sixtyfour-font"> 
-    <div class="background">
+    <div class="background" 8bit>
         <div style="/*-webkit-mask-image: -webkit-gradient(linear, 0% 5%, 0% 60%, from(rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.1)));*/">
 
         </div>
@@ -24,7 +24,13 @@
                 <a href="" retro="2,80" timeout="80*5*3 + 150">link4</a>
             </div>
             <hr>-->
-            <img src="https://avatars.githubusercontent.com/u/100922591?v=4" alt=""class="avatar">
+            <!--<div class="flex">
+                <img src="https://avatars.githubusercontent.com/u/100922591?v=4" alt=""class="avatar">
+                <div>
+                    <div retro>Le-programer</div>
+                </div>
+            </div>-->
+            
         </header>
         <main>
             <!--
@@ -94,19 +100,22 @@
         
         @keyframes hide {
             0% {bottom:-1vh;}
-            15% {bottom:-6vh;}
+            20% {bottom:-6vh;}
             80% {bottom:-6vh;}
             100% {bottom:-1vh;}
         }
 
         #cat{
             height: 5vh;
+            cursor: url('./cats/cat_pojebany.png'), auto;
         }
     </style>
     <script src="index.js"></script>
     <script>
         window.onload = function() {
-            new EyeBaller(document.getElementById('cet'), [new Eye('8%', '38%', '1vh', '1vh', 0, 90), new Eye('50%', '22%', '1vh', '1vh', 0, 90)])
+
+            console.log('loaden')
+            new EyeBaller(document.getElementById('cet'), [new Eye('23%', '48%', '1vh', '1vh', 0, 90), new Eye('60%', '35%', '1vh', '1vh', 0, 90)])
             
             let goober = document.getElementById('catLink')
             let gooberHidden = false
@@ -126,7 +135,7 @@
                 const background = document.querySelector('.background')
                 const cols = Math.floor(background.offsetWidth / 16); // Calculate the number of columns
                 const rows = Math.floor(background.offsetHeight/ 16) + 1; // Calculate the number of rows
-                const colsPerFive = parseInt(cols / 9);
+                const colsPerFive = parseInt(cols / 8);
                 let matrixString = '';
 
                 for (let r = 0; r < rows; r++) {
@@ -136,22 +145,27 @@
                         for(let b = 0; b < 8; b++){
                             rowString += Math.random() > 0.5 ? '1' : '0';
                         }
-                        rowString += ' '
+                        //rowString += ' '
                     }
 
                     // Ensure that the rowString does not exceed the column limit
                     rowString = rowString.slice(0, cols); // Trim to match the column width
 
-                    matrixString += rowString + '\n'; // Add newline after each row
+                    matrixString += rowString// + '\n'; // Add newline after each row
                 }
                     
                     background.textContent = matrixString;
-                    background.textContent += "00100011 00100000 01101000 01100101 01101100 01101100 01101111 00100000 01101001 01100110 00100000 01111001 01101111 01110101 00100000 01110010 01100101 01100001 01100100 00100000 01110100 01101000 01101001 01110011"
+                    background.textContent += "001000110010000001101000011001010110110001101100011011110010000001101001011001100010000001111001011011110111010100100000011100100110010101100001011001000010000001110100011010000110100101110011"
                     
             }
             matrix()
             window.addEventListener("resize", () => matrix())
-            
+
+            function matrixLoop(){
+                matrix()
+                setTimeout(matrixLoop, (Math.random() * (5 - 1) + 1) * 1000)
+            }
+            matrixLoop()
         }
     </script>
 
