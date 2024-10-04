@@ -1,3 +1,5 @@
+console.log("What are you doing here?!\n Do not steal my code you thief! >:(")
+
 var isPhone = /Mobi|Android/i.test(navigator.userAgent);
 
 function blinkEnd(whereTo, blinkChar = '█', times = 4, speed = 450){

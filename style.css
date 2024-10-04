@@ -31,13 +31,11 @@ header, main, footer{
 
 /* project */
     .project {
-        border: 2px solid green;
-        padding: 2%;
-        background-color: black;
+       
     }
 
     .project .title{
-        margin-bottom: 2%;
+        font-size: 120%;
     }
 
     .project .desc{
@@ -53,6 +51,24 @@ header, main, footer{
         width: 100%;
     }
 
+/* about-me */
+
+.about-me{
+   
+}
+
+.dis{
+    background-color: black;
+    border: 2px solid green;
+    margin-bottom: 1vh;
+    padding: 2%;
+    text-shadow: 0 0 3px limegreen;
+}
+
+.dis a{
+    text-shadow: none;
+}
+
 /* footer */
 
 footer{
@@ -65,9 +81,12 @@ footer{
 footer .media{
     display: flex;
     width: 80%;
-    flex-direction: column;
     justify-content: center;
-    justify-content: space-around;
+
+}
+
+footer .media * {
+    margin-left: 2vw;
 }
 
 /* all */
