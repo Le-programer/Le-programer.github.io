@@ -97,17 +97,12 @@ function onScrollInView(element, callback, interspace = 75) {
         const inView = rect.top >= 0 && rect.bottom - rect.height * (interspace / 100) <= (window.innerHeight || document.documentElement.clientHeight);
 
         if (inView) {
-            // Call the callback function if the element is in view
             callback();
-            // Optionally, remove the event listener after the callback has been called
             window.removeEventListener('scroll', handleScroll);
         }
     }
 
-    // Add a scroll event listener to the window
     window.addEventListener('scroll', handleScroll);
-
-    // Call handleScroll initially in case the element is already in view
     handleScroll();
 }
 
