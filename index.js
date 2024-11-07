@@ -91,10 +91,10 @@ function retroWrite(text, whereTo, index = 0, doBlink = 2, speed = 65, blinkTime
     }, speed)
 }*/
 
-function onScrollInView(element, callback, interspace = 0) {
+function onScrollInView(element, callback, interspace = 75) {
     function handleScroll() {
         const rect = element.getBoundingClientRect();
-        const inView = rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+        const inView = rect.top >= 0 && rect.bottom - rect.height * (interspace / 100) <= (window.innerHeight || document.documentElement.clientHeight);
 
         if (inView) {
             // Call the callback function if the element is in view
