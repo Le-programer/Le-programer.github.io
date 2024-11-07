@@ -1,3 +1,84 @@
+/* all */
+
+*{
+    cursor: url('./cats/cat_look.png'), auto;
+}
+
+*:active{
+    cursor: url('./cats/cat_point.png'), auto;
+}
+
+/* body */
+body{
+    background-color: black;
+    text-transform: uppercase;
+    text-transform: none;
+    color: limegreen;
+    margin: 0;
+    padding: 0;
+
+    visibility: hidden;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* hr */
+hr{
+    border: none;
+    border-top: green 3px solid; 
+    animation: opening 1s;
+    animation-timing-function: ease;
+}
+
+hr.lr{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+hr.rl{
+    margin-right: 0;
+}
+
+.horizontal-line{
+    border: none;
+    border-right: green 3px solid; 
+    animation: opening 1s;
+    animation-timing-function: ease;
+}
+
+@keyframes opening {
+    from {width: 0%;}
+    to {width: 100%;}
+}
+
+
+/* a : links */
+a, a:visited{
+    text-decoration: none;
+    color: #3782d8;
+}
+
+a:hover{
+    color: #4099ff;
+    cursor: url('./cats/cat_pojebany.png'), auto;
+}
+
+/* fonts */
+.font {
+    font-family: "Sixtyfour";
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal; 
+    text-shadow: 0 0 3px limegreen;
+}
+
+.fontt {
+    font-family: "Silkscreen", sans-serif;
+    font-size: calc(5vh / 2);
+    font-weight: bold;
+  }
+
 /* header */
 header{
 
@@ -11,6 +92,7 @@ header{
     text-align: center;
     opacity: 20%;
     word-break: break-all;
+    font-size: 16px;
 }
 
 /* main */
@@ -62,10 +144,10 @@ header, main, footer{
     border: 2px solid green;
     margin-bottom: 1vh;
     padding: 2%;
-    text-shadow: 0 0 3px limegreen;
+    
 }
 
-.dis a{
+a{
     text-shadow: none;
 }
 
@@ -80,88 +162,9 @@ footer{
 
 footer .media{
     display: flex;
-    width: 80%;
-    justify-content: center;
-
+    gap: 1vw;
 }
 
-footer .media * {
-    margin-left: 2vw;
-}
-
-/* all */
-
-    *{
-        cursor: url('./cats/cat_look.png'), auto;
-    }
-
-    *:active{
-        cursor: url('./cats/cat_point.png'), auto;
-    }
-
-    /* body */
-    body{
-        background-color: black;
-        text-transform: uppercase;
-        text-transform: none;
-        color: limegreen;
-        margin: 0;
-        padding: 0;
-    
-        visibility: hidden;
-    
-        display: flex;
-        justify-content: center;
-    }
-
-    /* hr */
-    hr{
-        border: none;
-        border-top: green 3px solid; 
-        animation: opening 1s;
-        animation-timing-function: ease;
-    }
-
-    hr.lr{
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    hr.rl{
-        margin-right: 0;
-    }
-
-    .horizontal-line{
-        border: none;
-        border-right: green 3px solid; 
-        animation: opening 1s;
-        animation-timing-function: ease;
-    }
-
-    @keyframes opening {
-        from {width: 0%;}
-        to {width: 100%;}
-    }
-
-
-    /* a : links */
-    a, a:visited{
-        text-decoration: none;
-        color: #3782d8;
-    }
-
-    a:hover{
-        color: #4099ff;
-        cursor: url('./cats/cat_pojebany.png'), auto;
-    }
-
-    /* fonts */
-    .sixtyfour-font {
-        font-family: "Sixtyfour";
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal; 
-    }
 
 /* other */
 
@@ -184,5 +187,6 @@ footer .media * {
 
     .project .desc{
         margin-top: 2%;
+        margin-left: 0;
     }
 }
