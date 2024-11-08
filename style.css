@@ -26,9 +26,14 @@ body{
 /* hr */
 hr{
     border: none;
-    border-top: green 3px solid; 
-    animation: opening 1s;
+    border-top: green 3px solid;
+    width: 0%; 
+    /*animation: opening 1s;*/
     animation-timing-function: ease;
+}
+
+hr.s{
+    animation: opening 1s;
 }
 
 hr.lr{
@@ -43,13 +48,14 @@ hr.rl{
 .horizontal-line{
     border: none;
     border-right: green 3px solid; 
-    animation: opening 1s;
+    /*animation: opening 1s;*/
     animation-timing-function: ease;
 }
 
 @keyframes opening {
-    from {width: 0%;}
-    to {width: 100%;}
+    0% {width: 0%;}
+    5% {width: 0%;}
+    100%{width: 100%;}
 }
 
 
@@ -161,6 +167,7 @@ footer{
 }
 
 footer .media{
+    margin-top: 1%;
     display: flex;
     gap: 1vw;
 }

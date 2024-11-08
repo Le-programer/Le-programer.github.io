@@ -100,19 +100,22 @@ function retroWrite(text, whereTo, index = 0, doBlink = 2, speed = 65, blinkTime
 }*/
 
 function onScrollInView(element, callback, interspace = 75) {
-    function handleScroll() {
-        const rect = element.getBoundingClientRect();
-        const inView = rect.top >= 0 && rect.bottom - rect.height * (interspace / 100) <= (window.innerHeight || document.documentElement.clientHeight);
+    const threshold = 1 - interspace / 100;
 
-        if (inView) {
-            callback();
-            window.removeEventListener('scroll', handleScroll);
-        }
-    }
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                callback();
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, {
+        threshold: threshold,
+    });
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
+    observer.observe(element);
 }
+
 
 
 class Eye{
@@ -280,5 +283,11 @@ document.fonts.ready.then( () => {
                 retroWrite(overText)
             }
         })
+    }); 
+
+    document.querySelectorAll("hr").forEach(element => {
+        onScrollInView(element, () => {
+            element.style.animation = "opening 1s forwards"
+        });
     }); 
 })
