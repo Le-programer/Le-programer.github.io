@@ -4,67 +4,72 @@ var isPhone = /Mobi|Android/i.test(navigator.userAgent);
 
 function blinkEnd(whereTo, blinkChar = '█', times = 3, speed = 450){
     if(blinkChar == '') return
-    if(times != 0){
-        let hop = 0
-        times = (times * 2) - 2
-        //whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-        //whereTo.innerText += '\u00A0'
-        let inter = setInterval(() => { 
-            if(times <= 0){
-                whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-                whereTo.innerText += '\u00A0'
-                clearInterval(inter)
-                return
-            }
-            if(hop == 0){
-                whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-                whereTo.innerText += '\u00A0'
-                hop = 1
-            }else{
-                whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-                whereTo.innerText += blinkChar
-                hop = 0
-            }
-            times -= 1
-        }, speed)
-    }else{
-        whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-        whereTo.innerText += '\u00A0'
+    if(times <= 0){
+        whereTo.innerHTML = whereTo.innerHTML.slice(0, -blinkChar.length)
+        whereTo.innerHTML += '\u00A0'
         return
     }
+    times = times * 2 - 1
+    let hop = true
+    whereTo.innerHTML = whereTo.innerHTML.slice(0, -blinkChar.length)
+    whereTo.innerHTML += '\u00A0'
+    let inter = setInterval(() => { 
+        if(hop){
+            whereTo.innerHTML = whereTo.innerHTML.slice(0, -6)
+            whereTo.innerHTML += blinkChar
+        }else{
+            whereTo.innerHTML = whereTo.innerHTML.slice(0, -blinkChar.length)
+            whereTo.innerHTML += '\u00A0'
+        }
+        hop = !hop
+        if(times <= 0) {
+            clearInterval(inter)
+            return
+        }
+        times -= 1
+    }, speed)
 }
 
-/*
-        whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-        whereTo.innerText += '\u00A0'
-        setTimeout(() => {
-                whereTo.innerText = whereTo.innerText.slice(0, -blinkChar.length)
-                w
-                blinkEnd(whereTo, blinkChar, times < 0 ? times : times - 1, speed)
-        },speed)
-*/
-
-function retroWrite(text, whereTo, index = 0, doBlink = 2, speed = 65, blinkTimes = 4, blinkSpeed = 650){
+function retroWrite(whereTo, index = 0, doBlink = 2, speed = 65, blinkTimes = 3, blinkSpeed = 650){
+    let text = whereTo.innerHTML.replace(/\n\s+/g, '');
     if(text == '') return
-    whereTo.innerText = ''
     let timeout = eval(whereTo.getAttribute('timeout'))
+    whereTo.innerHTML = ''
     timeout = !timeout || timeout == '' ? 0 : parseInt(timeout) 
     if(timeout != 0){
-        whereTo.innerText = ''
+        whereTo.innerHTML = ''
         whereTo.setAttribute('timeout', '0')
     }
 
-    let blinkChar = text[text.length - 1]
+    
 
     if(doBlink == 2){
+        var leng = text.length + 1
+    }else{ 
         var leng = text.length
-    }else{
-        var leng = text.length - 1
+        const matches = text.match(/\[[^\]]+\]/g);
+        if(matches){
+            var blinkChar = matches[matches.length - 1].substring(1,matches[matches.length - 1].length-1);
+            text = text.replace(`[${blinkChar}]`,'')
+        }else{
+            var blinkChar = '_';
+
+        }
+    }
+
+    function skipElement(){
+        if(text[index] == '<'){
+            const textAdd = text.substring(index, text.indexOf('>', index)+1)
+            whereTo.innerHTML += textAdd
+            index += textAdd.length 
+        }
+        if(text[index] == '<') skipElement()
+        return
     }
 
     setTimeout(() => { 
         let inter = setInterval(()=>{
-            if(index < leng){
+            if(index+1 < leng){
                 index += 1
             }else{ 
                 whereTo.style.height = "auto"
@@ -74,11 +79,14 @@ function retroWrite(text, whereTo, index = 0, doBlink = 2, speed = 65, blinkTime
                 }
                 clearInterval(inter)
                 return
-            } 
+            }
+
+            skipElement()
+
             if(doBlink == 2){
-                whereTo.innerText = text.substring(0,index)
+                whereTo.innerHTML = text.substring(0,index)
             }else{
-                whereTo.innerText = text.substring(0,index) + blinkChar
+                whereTo.innerHTML = text.substring(0,index) + blinkChar
             }
         },speed)
     }, timeout)
@@ -242,11 +250,21 @@ document.fonts.ready.then( () => {
 
     //retroWrite("hi maj name is james and i dont know what to say so i say this.", document.getElementById('in2'))
     document.querySelectorAll("[retro]").forEach(element => {
-        element.style.width = element.offsetWidth + "px"
-        element.style.height = element.offsetHeight + "px" 
-        element.style.opacity = '0'
+        element.style.position = 'relative'
+        element.style.visibility = 'hidden';
         onScrollInView(element, () => {
-            element.style.opacity = '1'
+            //element.style.width = element.offsetWidth + "px"
+            //element.style.height = element.offsetHeight + "px" 
+            let overText = document.createElement(element.localName)
+                overText.style.position = 'absolute'
+                overText.style.top = '0';
+                overText.style.left = '0';
+                overText.style.width = '100%';
+                overText.style.height = '100%';
+                overText.style.visibility = 'visible';
+                overText.innerHTML = element.innerHTML
+            element.append(overText)
+           // element.style.opacity = '1'
             args = element.getAttribute('retro')
             if(args != ''){
                 args = args.split(",")
@@ -257,9 +275,9 @@ document.fonts.ready.then( () => {
                         args[i] = parseInt(args[i])
                     }
                 }
-                retroWrite(element.innerText, element, undefined, args[0], args[1], args[2], args[3], args[4])
+                retroWrite(overText, undefined, args[0], args[1], args[2], args[3], args[4])
             }else{
-                retroWrite(element.innerText, element)
+                retroWrite(overText)
             }
         })
     }); 

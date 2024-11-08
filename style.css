@@ -122,12 +122,6 @@ header, main, footer{
     
     .project .desc{
         margin-left: 2%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .project .desc hr{
-        width: 100%;
     }
 
     .project .slide_show{
