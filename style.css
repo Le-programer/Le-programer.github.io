@@ -33,7 +33,7 @@ hr{
 }
 
 hr.s{
-    animation: opening 1s;
+    animation: opening 1s forwards;
 }
 
 hr.lr{
