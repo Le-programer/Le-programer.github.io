@@ -6,20 +6,20 @@ function blinkEnd(whereTo, blinkChar = '█', times = 3, speed = 450){
     if(blinkChar == '') return
     if(times <= 0){
         whereTo.innerHTML = whereTo.innerHTML.slice(0, -blinkChar.length)
-        whereTo.innerHTML += '\u00A0'
+        whereTo.innerHTML += '\u00A0'.repeat(blinkChar.length)
         return
     }
     times = times * 2 - 1
     let hop = true
     whereTo.innerHTML = whereTo.innerHTML.slice(0, -blinkChar.length)
-    whereTo.innerHTML += '\u00A0'
+    whereTo.innerHTML += '\u00A0'.repeat(blinkChar.length)
     let inter = setInterval(() => { 
         if(hop){
-            whereTo.innerHTML = whereTo.innerHTML.slice(0, -6)
+            whereTo.innerHTML = whereTo.innerHTML.slice(0, -(6*blinkChar.length))
             whereTo.innerHTML += blinkChar
         }else{
             whereTo.innerHTML = whereTo.innerHTML.slice(0, -blinkChar.length)
-            whereTo.innerHTML += '\u00A0'
+            whereTo.innerHTML += '\u00A0'.repeat(blinkChar.length)
         }
         hop = !hop
         if(times <= 0) {
@@ -69,7 +69,7 @@ function retroWrite(whereTo, index = 0, doBlink = 2, speed = 65, blinkTimes = 3,
 
     setTimeout(() => { 
         let inter = setInterval(()=>{
-            if(index+1 < leng){
+            if(index+1 <= leng){
                 index += 1
             }else{ 
                 whereTo.style.height = "auto"
@@ -251,7 +251,6 @@ document.fonts.ready.then( () => {
         ele.textContent = parseInt((Date.now() - parseInt(ele.textContent) * 1000) / 1000 / 60 / 60 / 24 / 365);
     })
 
-    //retroWrite("hi maj name is james and i dont know what to say so i say this.", document.getElementById('in2'))
     document.querySelectorAll("[retro]").forEach(element => {
         element.style.position = 'relative'
         element.style.visibility = 'hidden';

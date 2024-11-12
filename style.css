@@ -187,7 +187,7 @@ footer .media{
 
 /* forPhone */
 
-@media only screen and (orientation: portrait) {
+@media only screen and (max-aspect-ratio: 10/8) {
     .project .desc_container{
         flex-wrap: wrap;
     }
