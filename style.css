@@ -16,9 +16,6 @@ body{
     color: limegreen;
     margin: 0;
     padding: 0;
-
-    visibility: hidden;
-
     display: flex;
     justify-content: center;
 }
@@ -77,6 +74,7 @@ a:hover{
     font-weight: 400;
     font-style: normal; 
     text-shadow: 0 0 3px limegreen;
+    line-height: 1.2;
     font-size: 2vh;
 }
 
@@ -170,7 +168,9 @@ footer{
 footer .media{
     margin-top: 1%;
     display: flex;
-    gap: 1vw;
+    gap: 2vw;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 

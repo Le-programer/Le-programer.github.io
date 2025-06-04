@@ -71,7 +71,10 @@
                             and notify you where is your next lesson using schools page API. <br>
                             It is much faster than finding class rooms manualy!
                             <br><br>
-                            Made with epic classmate:<a href="https://kisielo85.github.io">Kisielo85</a>[ <<]
+                            <div>
+                                Made with epic classmate:<a href="https://kisielo85.github.io">Kisielo85</a>
+                            </div>
+                            [_]
                         </div> 
                     </div>
                 </div>
@@ -86,19 +89,15 @@
                             <div retro="1,10,0" timeout="500">
                                 I’m Marcel Mikulski, a <span id="yrsOld">1104537600</span> year old programmer from Poland
                                 <br><br>
-                                I have a passion for programming and computing since I started playing games as a child. Ever since then, I've been fascinated by computers and how they work. <br> <br>
+                                I have a passion for programming and computing since I started playing games as a child. <br>
                                 I love things that are customizable, whether it’s computers, cars or PCBs. It’s amazing to see all the cool stuff you can make for your needs! <br> <br>
-                                I can learn to program in most languages, but these i am good at:
+                                I worked with:
                                 <br><br>
-                                Java<br>
-                                JS/TS<br>
-                                C#<br>
-                                Python<br>  
-                                <br>
-                                JavaScript, worked with TypeScript, React, and Node.js.<br>
-                                I primarily use Node.js, creating bots such as chatbots and trading bots as well for developing web applications.<br><br>
-
-                                C#, Used it only when trying to do projects or game mods for Unity but they were only small projects for fun.
+                                <span style="color: #efd81c;text-shadow: 0 0 3px #efd81c">JavaScript</span>: TypeScript, React, and Node.js<br>
+                                I primarily used Node.js, creating bots such as chatbots or QOL bots and for developing web applications.<br><br>
+                                <span style="color: #9e5599; text-shadow: 0 0 3px #9e5599;">C#</span> small projects or game mods for Unity.<br><br>
+                                <span style="color: #085e9f; text-shadow: 0 0 3px #085e9f;">C++</span> automated hotkeys / scripts for games<br><br>
+                                <span style="color: #3d76a7; text-shadow: 0 0 3px #3d76a7;">Python</span> QOL programs for personal use or to test something and make it in another language<br><br>
                             </div>
                 </div>
             </div>
@@ -109,9 +108,9 @@
             <div retro=",50,0">
                 Social Links<br>
                 <div class="media">
-                    <a href="https://www.youtube.com/@de-pres7806">YouTube</a> <br>
-                    <a href="https://discord.com/users/899941837106712587/">Discord</a> <br>
-                    <a href="">Instagram</a>
+                    <a href="https://www.youtube.com/@de-pres7806" style="color: red;">YouTube</a>
+                    <a href="https://discord.com/users/899941837106712587/" style="color: rgb(0, 89, 255);">Discord</a>
+                    <a href="" style="color: rgb(212, 212, 0);">Instagram</a>
                     <a href="https://github.com/Le-programer">Github</a>
                 </div>
                 <hr class="s">
@@ -166,8 +165,8 @@
 
             function matrix(){
                 const background = document.querySelector('.background')
-                const cols = Math.floor(background.offsetWidth / 16); // Calculate the number of columns
-                const rows = Math.floor(background.offsetHeight/ 16) + 1; // Calculate the number of rows
+                const cols = Math.floor(background.offsetWidth / 15); // Calculate the number of columns
+                const rows = Math.floor(background.offsetHeight/ 15) + 1; // Calculate the number of rows
                 const colsPerFive = parseInt(cols / 8);
                 let matrixString = '';
 
@@ -196,7 +195,7 @@
 
             function matrixLoop(){
                 matrix()
-                setTimeout(matrixLoop, (Math.random() * (4 - 1) + 1) * 1000)
+                setTimeout(matrixLoop, (Math.random() * (4 - 2) + 2) * 1000)
             }
             matrixLoop()
         }

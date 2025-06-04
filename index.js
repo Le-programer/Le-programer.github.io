@@ -72,8 +72,8 @@ function retroWrite(whereTo, index = 0, doBlink = 2, speed = 65, blinkTimes = 3,
             if(index+1 <= leng){
                 index += 1
             }else{ 
-                whereTo.style.height = "auto"
-                whereTo.style.width = "auto"
+                //whereTo.style.height = "auto"
+                //whereTo.style.width = "auto"
                 if(doBlink == 1){
                     blinkEnd(whereTo, blinkChar, blinkTimes, blinkSpeed)
                 }
