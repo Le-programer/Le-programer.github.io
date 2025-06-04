@@ -1,4 +1,4 @@
-console.log("What are you doing here?!\n Do not steal my code you thief! >:(")
+console.log("What are you doing here?!\n Do not steal my code you stealer! >:O")
 
 var isPhone = /Mobi|Android/i.test(navigator.userAgent);
 
@@ -216,7 +216,7 @@ class EyeBaller{
 
     constructor(whereTo, eyeArray = [new Eye(), new Eye()]){
         if(whereTo.localName == "img"){
-            console.error("class EyeBaller: whereTo object cannot be img, cannot append other objects to it, best just do div and put img to the div and set whereTo to the made div.")
+            console.error("class EyeBaller: whereTo object cannot be img, cannot append other objects to it, best just do div and put img to the div and set whereTo to be div.")
             return null
         }
         this.object = whereTo;
